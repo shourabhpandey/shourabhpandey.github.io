@@ -163,3 +163,10 @@ body.dark .dark-mode-toggle {
   border: 1px solid #333;
   box-shadow: 0 1px 4px rgba(0,0,0,0.12);
 }
+
+@media (max-width: 600px) {
+  .dark-mode-toggle {
+    left: 18px;
+    top: 18px;
+  }
+}
