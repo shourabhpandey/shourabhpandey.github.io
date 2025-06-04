@@ -15,9 +15,9 @@
 
     body.dark {
       --bg-color: #121212;
-      --text-color: #e0e0e0;
-      --box-bg: #252525;
-      --box-border: #666;
+      --text-color: #f0f0f0;
+      --box-bg: #1e1e1e;
+      --box-border: #444;
     }
 
     body {
@@ -31,14 +31,15 @@
     .container {
       max-width: 900px;
       margin: 0 auto;
-      padding: 2rem clamp(1rem, 5vw, 1.5rem);
+      padding: 2rem;
       position: relative;
     }
 
+    /* Dark Mode Toggle */
     .dark-toggle {
       position: fixed;
       top: 1rem;
-      right: clamp(1rem, 5vw, 1.5rem);
+      right: 1rem;
       background-color: var(--box-bg);
       border: 2px solid var(--box-border);
       border-radius: 50%;
@@ -49,12 +50,10 @@
       align-items: center;
       justify-content: center;
       transition: background-color 0.3s;
-      z-index: 1000;
     }
 
-    .dark-toggle:focus {
-      outline: 2px solid var(--text-color);
-      outline-offset: 2px;
+    .dark-toggle:hover {
+      background-color: var(--box-border);
     }
 
     .header {
@@ -63,26 +62,19 @@
       gap: 1rem;
     }
 
-    @media (max-width: 600px) {
-      .header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .profile-img {
-        width: 60px;
-        height: 60px;
-      }
-    }
-
     .profile-img {
       width: 80px;
       height: 80px;
       border-radius: 50%;
       background-color: #ccc;
-      background-image: url('https://via.placeholder.com/80'); /* Replace with actual image */
+      background-image: url('profile-placeholder.png'); /* Replace later */
       background-size: cover;
       background-position: center;
+    }
+
+    .name-role h2 {
+      margin: 0;
+      font-size: 1.5rem;
     }
 
     .rotating-title {
@@ -96,26 +88,65 @@
     .rotating-title span {
       position: absolute;
       opacity: 0;
-      transform: translateY(-20px);
       animation: fadeText 12s infinite;
     }
 
+    .rotating-title span:nth-child(1) { animation-delay: 0s; }
+    .rotating-title span:nth-child(2) { animation-delay: 3s; }
+    .rotating-title span:nth-child(3) { animation-delay: 6s; }
+    .rotating-title span:nth-child(4) { animation-delay: 9s; }
+
     @keyframes fadeText {
-      0%, 20% { opacity: 1; transform: translateY(0); }
-      25%, 100% { opacity: 0; transform: translateY(20px); }
+      0%, 25% { opacity: 1; }
+      30%, 100% { opacity: 0; }
     }
 
-    .tech-stack {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
+    .social-icons a {
+      margin-right: 10px;
+      display: inline-block;
+      transition: transform 0.3s ease;
     }
 
-    .tech-stack img {
-      width: 100%;
-      max-width: 50px;
-      height: auto;
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    h3 {
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .project, .article {
+      background-color: var(--box-bg);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--box-border);
+    }
+
+    .project strong, .article strong {
+      font-size: 1.1rem;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-color);
+      margin-top: 2rem;
+    }
+
+    .contact-icons img {
+      width: 20px;
+      margin: 0 6px;
     }
 
     button {
@@ -126,22 +157,12 @@
       color: white;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    button:hover, button:focus {
-      background-color: #555;
-      transform: scale(1.05);
-    }
-
-    a:focus {
-      outline: 2px solid var(--text-color);
-      outline-offset: 2px;
     }
   </style>
 </head>
 <body>
-  <div class="dark-toggle" role="button" aria-label="Toggle dark mode" tabindex="0" onclick="toggleDarkMode()" onkeydown="if(event.key === 'Enter') toggleDarkMode()">
+
+  <div class="dark-toggle" onclick="toggleDarkMode()">
     🌓
     <audio id="toggleSound" src="toggle-sound.mp3" preload="auto"></audio>
   </div>
@@ -158,52 +179,80 @@
           <span>DevOps Engineer</span>
         </div>
         <div class="social-icons">
-          <a href="https://github.com/username"><img src="./assets/images/github-icon.png" alt="GitHub Profile"></a>
-          <a href="https://huggingface.co/username"><img src="./assets/images/huggingface-icon.png" alt="Hugging Face Profile"></a>
-          <a href="https://linkedin.com/in/username"><img src="./assets/images/linkedin-icon.png" alt="LinkedIn Profile"></a>
-          <a href="mailto:shourabhpandey@gmail.com"><img src="./assets/images/email-icon.png" alt="Email Contact"></a>
+          <a href="#"><img src="github-icon.png" alt="GitHub"></a>
+          <a href="#"><img src="huggingface-icon.png" alt="Hugging Face"></a>
+          <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+          <a href="mailto:shourabhpandey@gmail.com"><img src="email-icon.png" alt="Email"></a>
         </div>
       </div>
     </div>
 
     <div class="section">
       <h3>About me</h3>
-      <p>I enjoy coding, fixing issues, designing solutions, and bringing projects to life. You can check out my <a href="https://github.com/username">projects</a> and <a href="#">articles</a>.</p>
+      <p>I enjoy coding, fixing issues, designing solutions, and bringing projects to life. You can check out my <a href="#">projects</a> and <a href="#">articles</a>.</p>
       <p>Here’s a list of tech stacks (AI/ML, Cloud, and DevOps) I regularly use and enjoy working with:</p>
       <div class="tech-stack">
-        <img src="./assets/images/python.png" alt="Python Technology Icon">
-        <img src="./assets/images/tensorflow.png" alt="TensorFlow Technology Icon">
-        <img src="./assets/images/aws.png" alt="AWS Technology Icon">
-        <img src="./assets/images/docker.png" alt="Docker Technology Icon">
-        <img src="./assets/images/kubernetes.png" alt="Kubernetes Technology Icon">
+        <img src="tech1.png" alt="Tech 1">
+        <img src="tech2.png" alt="Tech 2">
+        <img src="tech3.png" alt="Tech 3">
+        <img src="tech4.png" alt="Tech 4">
+        <img src="tech5.png" alt="Tech 5">
       </div>
     </div>
 
-    <!-- Other sections remain unchanged for brevity -->
+    <div class="section">
+      <h3>Featured Projects</h3>
+      <div class="project">
+        <strong>RAG Cookbooks 🔥</strong><br>Advanced + Agentic RAG Cookbooks.<br>
+        <a href="#">GitHub</a>
+      </div>
+      <div class="project">
+        <strong>MLOps Project 🧠</strong><br>End-to-end insurance cross-sell prediction deployment.<br>
+        <a href="#">GitHub</a>
+      </div>
+      <div class="project">
+        <strong>SmartRAG 🕵️‍♂️</strong><br>Interact with URLs & docs using RAG.<br>
+        <a href="#">GitHub</a>
+      </div>
+      <div class="project">
+        <strong>MedicalGPT ⚕️</strong><br>LLM for medical query solving.<br>
+        <a href="#">GitHub</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Featured Articles</h3>
+      <div class="article">
+        <strong>Machine Learning Operations (MLOps) For Beginners</strong><br>End-to-end Project Implementation<br>
+        <a href="#">Read Article</a>
+      </div>
+      <div class="article">
+        <strong>RAG using LangChain, LlamaIndex & OpenAI</strong><br>From Basic to Advanced<br>
+        <a href="#">Read Article</a>
+      </div>
+      <div class="article">
+        <strong>Fine-Tune Large Language Model in Colab</strong><br>Step-by-step Phi-2 fine-tuning<br>
+        <a href="#">Read Article</a>
+      </div>
+    </div>
 
     <div class="footer">
       <p>If you have any questions or just want to connect, feel free to reach out. Contact me via <a href="mailto:shourabhpandey@gmail.com">email</a> or socials below:</p>
       <div class="contact-icons">
-        <a href="https://github.com/username"><img src="./assets/images/github-icon.png" alt="GitHub Profile"></a>
-        <a href="https://linkedin.com/in/username"><img src="./assets/images/linkedin-icon.png" alt="LinkedIn Profile"></a>
-        <a href="mailto:shourabhpandey@gmail.com"><img src="./assets/images/email-icon.png" alt="Email Contact"></a>
+        <a href="#"><img src="github-icon.png" alt="GitHub"></a>
+        <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+        <a href="#"><img src="email-icon.png" alt="Email"></a>
       </div>
       <p><button>Schedule a call</button></p>
-      <p><label><input type="checkbox" id="soundToggle" checked> Enable toggle sound</label></p>
     </div>
   </div>
 
   <script>
     function toggleDarkMode() {
       const audio = document.getElementById("toggleSound");
-      const isSoundEnabled = localStorage.getItem("soundEnabled") !== "false";
       document.body.classList.toggle("dark");
-      if (isSoundEnabled) audio.play();
+      audio.play();
     }
-
-    document.getElementById("soundToggle").addEventListener("change", (e) => {
-      localStorage.setItem("soundEnabled", e.target.checked);
-    });
   </script>
 </body>
 </html>
