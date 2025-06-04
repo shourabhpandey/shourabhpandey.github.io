@@ -166,7 +166,8 @@ body.dark .dark-mode-toggle {
 
 @media (max-width: 600px) {
   .dark-mode-toggle {
-    left: 18px;
-    top: 18px;
+    left: auto;
+    right: 16px;
+    top: 16px;
   }
 }
