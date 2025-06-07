@@ -24,7 +24,4 @@ setInterval(updateRole, 3000);
 
 function toggleDarkMode() {
   document.body.classList.toggle("dark");
-  const icon = document.getElementById("modeIcon");
-  // Use black and white Unicode icons for subtlety
-  icon.textContent = document.body.classList.contains("dark") ? "☀️" : "🌓";
 }
